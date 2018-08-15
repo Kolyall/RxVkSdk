@@ -78,10 +78,10 @@ buildscript {
     }
 }
 
-apply from: 'javaDocCustom.gradle'
-apply from: 'bintray.gradle'
-apply from: 'installv1.gradle'
-apply from: 'bintrayv1.gradle'
+apply from: 'libraryInfo.gradle'
+apply from: 'artifactsSetup.gradle'
+apply from: 'installSetup.gradle'
+apply from: 'bintraySetup.gradle'
 apply from: 'mavenCustom.gradle'
 
 
