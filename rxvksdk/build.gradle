@@ -1,18 +1,7 @@
 apply plugin: 'com.android.library'
+apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/appVersion.gradle'
 
 android {
-    def propertiesFile = file('properties/version/version.properties')
-    def appVersionCode = 1;
-    def appVersionName = "1.0";
-    if (propertiesFile.canRead()) {
-        Properties properties = new Properties()
-        properties.load(new FileInputStream(propertiesFile))
-        appVersionCode = Integer.parseInt(properties['VERSION_CODE']).intValue();
-        appVersionName = String.valueOf(properties['VERSION_NAME']);
-    } else {
-        throw new Exception("Could not read properties/version/version.properties!")
-    }
-
     compileSdkVersion 28
 
     defaultConfig {
@@ -35,35 +24,35 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVer}"
+    implementation "com.android.support:appcompat-v7:${supportLibVer}"
     api 'com.vk:androidsdk:1.6.8'
 
     // rxjava
-    implementation  "io.reactivex:rxjava:${rootProject.ext.rxJavaVersion}"
-    implementation  "io.reactivex:rxandroid:${rootProject.ext.rxAndroidVersion}"
-    implementation  "com.github.davidmoten:rxjava-extras:${rootProject.ext.rxExtrasVersion}"
+    implementation  "io.reactivex:rxjava:${rxJavaVersion}"
+    implementation  "io.reactivex:rxandroid:${rxAndroidVersion}"
+    implementation  "com.github.davidmoten:rxjava-extras:${rxExtrasVersion}"
 
     // square
-    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
-    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
-    implementation "com.squareup.retrofit2:adapter-rxjava:${rootProject.ext.retrofitVersion}"
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
 
-    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okHttpVersion}"
-    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okHttpVersion}"
-    implementation "com.squareup.okhttp3:okhttp-urlconnection:${rootProject.ext.okHttpVersion}"
+    implementation "com.squareup.okhttp3:okhttp:${okHttpVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:${okHttpVersion}"
 
     // dagger
-    implementation "javax.annotation:jsr250-api:${rootProject.ext.javaxAnnotationVersion}"
-    implementation "javax.inject:javax.inject:${rootProject.ext.javaxInjectVersion}"
-    implementation "com.google.dagger:dagger:${rootProject.ext.daggerVersion}"
-    annotationProcessor "com.google.dagger:dagger-compiler:${rootProject.ext.daggerVersion}"
+    implementation "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+    implementation "javax.inject:javax.inject:${javaxInjectVersion}"
+    implementation "com.google.dagger:dagger:${daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
 
-    compileOnly "org.projectlombok:lombok:${rootProject.ext.lombokVersion}"
-    annotationProcessor "org.projectlombok:lombok:${rootProject.ext.lombokVersion}"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
     // FragmentWithArgs
-    implementation "org.parceler:parceler-api:${rootProject.ext.parcelerVersion}"
-    annotationProcessor "org.parceler:parceler:${rootProject.ext.parcelerVersion}"
+    implementation "org.parceler:parceler-api:${parcelerVersion}"
+    annotationProcessor "org.parceler:parceler:${parcelerVersion}"
 }
 
 // Place it at the end of the file
@@ -78,10 +67,10 @@ buildscript {
     }
 }
 
-apply from: 'libraryInfo.gradle'
-apply from: 'artifactsSetup.gradle'
-apply from: 'installSetup.gradle'
-apply from: 'bintraySetup.gradle'
+apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/libraryInfo.gradle'
+apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/artifactsSetup.gradle'
+apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/installSetup.gradle'
+apply from: 'https://raw.githubusercontent.com/Kolyall/MavenPublish/master/bintraySetup.gradle'
 apply from: 'mavenCustom.gradle'
 
 

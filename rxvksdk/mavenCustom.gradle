@@ -5,7 +5,7 @@ publishing {
     publications {
         androidLibrary(MavenPublication) {
             groupId publishedGroupId
-            artifactId artifactLocal
+            artifactId artifact
             version libraryVersion
 
             artifact bundleRelease
